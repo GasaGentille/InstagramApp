@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Image,Profile 
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
@@ -25,7 +25,7 @@ def new_image(request):
             image = form.save(commit=False)
             image.user = current_user
             image.save()
-        return redirect('NewImage')
+        return redirect('/')
 
     else:
         form = NewImageForm()
