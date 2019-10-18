@@ -28,5 +28,5 @@ def new_image(request):
         return redirect('NewImage')
 
     else:
-        form = NewAImageForm()
+        form = NewImageForm()
     return render(request, 'new_image.html', {"form": form})
