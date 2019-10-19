@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     profile_photo= models.ImageField(upload_to = 'profile/', null=True)
     bio = models.CharField(max_length =30)
+    username = models.CharField(default = 'User',max_length =30)
 
     def __str__(self):
         return self.location

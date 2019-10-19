@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{% block content %}
+{{block.super}}
+
+
+<div class="col-md-12">
+    {% for profile in profile %}
+
+    <img src="{{ profile.profile_photo.url}}">
+    <h3>{{profile.username}}</h3>
+    <a href="{% url 'profile' %}">Change profile</a>
+    {% endfor %}
+</div>
+{% endblock %}
