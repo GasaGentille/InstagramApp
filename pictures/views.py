@@ -2,14 +2,14 @@ from django.shortcuts import render,redirect
 from .models import Image,Profile, Comments
 from .email import send_welcome_email
 from django.contrib.auth.decorators import login_required
-from .forms import NewImageForm,ProfileForm
+from .forms import NewImageForm,ProfileForm,CommentForm
 
 
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
 def image(request):
-    images = Image.objects.all()
+    images = Image.objects.all().prefetch_related('comments_set')
     print(images)
     return  render (request,'index.html',{"images":images})
 
@@ -89,7 +89,7 @@ def comment(request,image_id):
 
             comment.save()
 
-        return redirect('/')
+        return redirect('image')
     else:
         form= CommentForm()
     return render (request, 'comment.html',{"form":form,"image_id":image_id})

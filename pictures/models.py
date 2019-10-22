@@ -54,7 +54,11 @@ class Image(models.Model):
 
     def update_image(self):
         images = Image.objects.filter_by(id = 2).update(name = 'people')
-
+        
+    @classmethod
+    def get_all_images(cls):
+      images=cls.objects.all().prefetch_related('comment_set')
+      return images
 
 class Comments(models.Model):
     comment = models.CharField(max_length =30)

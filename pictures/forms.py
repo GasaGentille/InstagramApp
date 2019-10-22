@@ -1,4 +1,4 @@
-from .models import Image, Profile
+from .models import Image, Profile,Comments
 from django import forms
 
 class NewImageForm(forms.ModelForm):
@@ -17,3 +17,8 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ('profile_photo','bio')
         exclude=['user']
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+      model=Comments
+      exclude=['image','user']
