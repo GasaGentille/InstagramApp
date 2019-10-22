@@ -19,6 +19,12 @@ class Profile(models.Model):
     @classmethod
     def search_profile(cls, username):
         return cls.objects.filter(name__icontains=username)
+
+    @classmethod
+    def search_by_user(cls,search_term):
+        profile = cls.objects.filter(title__icontains=search_term)
+        return profile
+
     def save_profile(self):
         self.user
     def delete_profile(self):

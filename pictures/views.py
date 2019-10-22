@@ -103,6 +103,21 @@ def likes(request,image_id):
   return redirect('image')
 
 
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+
+    if 'profile' in request.GET and request.GET["profile"]:
+        search_term = request.GET.get("profile")
+        searched_user = Profile.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"user": searched_user})
+
+    else:
+        message = "You haven't searched for any user"
+        return render(request, 'search.html',{"message":message})
+
+
 # def sendEmail(request):
 #     if request.method == 'POST':
 #         form = NewsLetterForm(request.POST)
