@@ -37,9 +37,9 @@
                             {% for coment in image.comments_set.all %}
                             <p>{{coment.comment}}</p>
                             {% endfor %}
-                            <a class='info'>
-                                <p>{{x.likes}} likes<i class="fa fa-heart-o"></i></p>
-                            </a><span style="font-size:20px;">{{x.likes.count}}</span>
+                            <a class='info' href="{% url 'likes' image.id%}">
+                                    <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
+                                </a><span style="font-size:20px;">{{image.likes.count}}</span>
 
                         </div>
                     </div>

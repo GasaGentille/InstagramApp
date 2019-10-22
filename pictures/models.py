@@ -40,6 +40,7 @@ class Image(models.Model):
     image_caption = models.CharField(max_length =30)
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
     likes = models.IntegerField(default=0)
+    
     # comments = models.CharField(max_length =30)
     # profile_photo =  models.ForeignKey(Profile, null=True)
 
@@ -54,7 +55,7 @@ class Image(models.Model):
 
     def update_image(self):
         images = Image.objects.filter_by(id = 2).update(name = 'people')
-        
+
     @classmethod
     def get_all_images(cls):
       images=cls.objects.all().prefetch_related('comment_set')
