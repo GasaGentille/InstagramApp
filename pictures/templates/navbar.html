@@ -23,9 +23,7 @@
                         <li>
                             <a href="{% url 'image' %}">Home</a>
                         </li>
-                        <li>
-                            <a href="{% url 'profile'%}">Add  Profile</a>
-                         </li>
+                        
                         <li>
                             <a href="/accounts/password/change">Change Password</a>
                         </li>
@@ -47,6 +45,9 @@
             <a href="{%url 'new-image'%}">Add image</a>
             <input type="text" placeholder="Search..">
             <button>Search</button>
+            <li>
+                    <a href="{% url 'profile'%}">Profile</a>
+                 </li>
             {% endif %}
         </div>
 

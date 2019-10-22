@@ -17,6 +17,7 @@ def image(request):
 def profile(request, username=None):
     current_user = request.user
     imgs = Image.objects.filter(user = current_user)
+    print('aaaaaaaa')
     return  render (request,'profile.html',locals(),{"imgs":imgs})
 
 @login_required(login_url='/accounts/login/')
@@ -37,21 +38,41 @@ def new_image(request):
 @login_required(login_url='/accounts/login/')
 def add_profile(request):
     current_user = request.user
-    title = 'Add profile'
-    
-    # prof = Profile.objects.get(user_id =current_user.id)
+    prof_update = Profile.objects.filter(user=current_user).first()
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
-        
+    
         if form.is_valid():
-            image=forms.save(commit=False)
+            image=form.save(commit=False)
             image.user=current_user
             image.save()
-        return redirect('profile')
-
+            
+            return redirect('profile')
+        
     else:
+        print('gggggggg')
+
         form = ProfileForm()
-    return render(request, 'add_profile.html', {"title":title,"form": form})
+    return render(request, 'add_profile.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    current_user = request.user
+    prof_update = Profile.objects.filter(user=current_user).first()
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+    
+        if form.is_valid():
+            profile=form.save(commit=False)
+            Profile.objects.filter(id = prof_update.id).update(profile_photo =profile.profile_photo,bio=profile.bio)
+            
+            return redirect('profile')
+        
+    else:
+        
+        form = ProfileForm()
+    return render(request, 'update.html', {"form": form})
 
 
 

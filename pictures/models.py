@@ -11,7 +11,10 @@ class Profile(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.bio
+
+    def save_profile(self):
+        sel.save()
 
     @classmethod
     def search_profile(cls, username):
@@ -38,7 +41,7 @@ class Image(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
     likes = models.IntegerField(default=0)
     # comments = models.CharField(max_length =30)
-    profile_photo =  models.ForeignKey(Profile, null=True)
+    # profile_photo =  models.ForeignKey(Profile, null=True)
 
     def __str__(self):
         return self.image_name
@@ -60,4 +63,4 @@ class Comments(models.Model):
     
 
     def __str__(self):
-        return self.comment
+        return self.user
