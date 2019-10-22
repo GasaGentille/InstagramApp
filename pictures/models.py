@@ -4,21 +4,31 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Profile(models.Model):
-    profile_photo= models.ImageField(upload_to = 'profile/', null=True)
+    profile_photo= models.ImageField(upload_to = 'images/', null=True)
     bio = models.CharField(max_length =30)
-    username = models.CharField(default = 'User',max_length =30)
+    name = models.CharField(max_length =30,null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE ,related_name="profile",null=True)
+
 
     def __str__(self):
-        return self.location
-        
-    def save_location(self):
-        self.save()
+        return self.name
 
-    def delete_location(self):
+    @classmethod
+    def search_profile(cls, username):
+        return cls.objects.filter(name__icontains=username)
+    def save_profile(self):
+        self.user
+    def delete_profile(self):
         self.delete()
+        
+    # def save_location(self):
+    #     self.save()
 
-    def update_location(self):
-        location = Location.objects.filter_by(id = 2).update(location = 'kigali')
+    # def delete_location(self):
+    #     self.delete()
+
+    # def update_location(self):
+    #     location = Location.objects.filter_by(id = 2).update(location = 'kigali')
 
 
 class Image(models.Model):
@@ -27,7 +37,7 @@ class Image(models.Model):
     image_caption = models.CharField(max_length =30)
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
     likes = models.IntegerField(default=0)
-    comments = models.CharField(max_length =30)
+    # comments = models.CharField(max_length =30)
     profile_photo =  models.ForeignKey(Profile, null=True)
 
     def __str__(self):
@@ -43,6 +53,11 @@ class Image(models.Model):
         images = Image.objects.filter_by(id = 2).update(name = 'people')
 
 
-
+class Comments(models.Model):
+    comment = models.CharField(max_length =30)
+    user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
+    image = models.ForeignKey(Image,on_delete=models.CASCADE ) 
     
 
+    def __str__(self):
+        return self.comment

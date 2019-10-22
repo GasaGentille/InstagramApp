@@ -1,14 +1,21 @@
 {%extends 'base.html'%}
+{% load static %}
+{% load bootstrap4%}
 {% block content %}
 {{block.super}}
 
-
-<div class="col-md-12">
-    {% for profile in profile %}
-
-    <img src="{{ profile.profile_photo.url}}">
-    <h3>{{profile.username}}</h3>
-    <a href="{% url 'profile' %}">Change profile</a>
-    {% endfor %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <img src="{{ user.profile.profile_photo.url}}" alt="Profile">
+    </div>
+    <div class="col-md-8">
+            <h3>{{user.username}}</h3>
+            <a href="{% url 'add_profile' %}">Edit profile</a>
+    </div>
+    
 </div>
+     
+</div>
+
 {% endblock %}
