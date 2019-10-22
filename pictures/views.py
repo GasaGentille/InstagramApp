@@ -94,6 +94,14 @@ def comment(request,image_id):
         form= CommentForm()
     return render (request, 'comment.html',{"form":form,"image_id":image_id})
 
+@login_required(login_url='/accounts/login/')
+def likes(request,image_id):
+  likes =1
+  posted=Image.objects.get(id=image_id)
+  posted.likes=posted.likes+1
+  posted.save()
+  return redirect('image')
+
 
 # def sendEmail(request):
 #     if request.method == 'POST':
