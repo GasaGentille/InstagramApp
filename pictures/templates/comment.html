@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<head>
+    <title>Add your comment </title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="{%url 'comment'%}" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {% bootstrap_form form%}
+                <input id="id_myfield" type="submit" class="btn btn-success btn-lg" value="Post">
+            </form>
+            {% endblock %}
+            {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            {% bootstrap_javascript %} {% endblock %}
+        </div>
+    </div>
+</body>
+{% endblock %}
