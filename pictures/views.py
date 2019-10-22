@@ -74,6 +74,25 @@ def update_profile(request):
         form = ProfileForm()
     return render(request, 'update.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
+
+def comment(request,image_id):
+    current_user = request.user
+    if request.method == 'POST':
+        image_comments = Image.objects.filter(id=image_id).first()
+
+        form= CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user=current_user
+            comment.image=image_comments
+
+            comment.save()
+
+        return redirect('/')
+    else:
+        form= CommentForm()
+    return render (request, 'comment.html',{"form":form,"image_id":image_id})
 
 
 # def sendEmail(request):
