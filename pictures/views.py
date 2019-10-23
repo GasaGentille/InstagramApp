@@ -50,8 +50,7 @@ def add_profile(request):
             return redirect('profile')
         
     else:
-        print('gggggggg')
-
+        
         form = ProfileForm()
     return render(request, 'add_profile.html', {"form": form})
 

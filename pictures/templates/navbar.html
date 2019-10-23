@@ -2,27 +2,27 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Leckerli+One&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="topnav">
+    <br><br><br>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
 
-        <div class="col-sm-6 col-md-6">
-            {% if user.is_authenticated %}
+            <div class="navbar-header">
+                {% if user.is_authenticated %}
 
-            <ul>
-                <li class="dropdown">
+
+                <div class="dropdown">
                     <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
                         aria-expanded="false">Account
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{% url 'image' %}">Home</a>
-                        </li>
+
 
                         <li>
                             <a href="/accounts/password/change">Change Password</a>
@@ -31,44 +31,46 @@
                             <a href="/logout">Logout</a>
                         </li>
                     </ul>
+                </div>
+
+                {% else %}
+                <li>
+                    <a class='btn btn-default' href="/accounts/login">Login</a>
                 </li>
-            </ul>
-            {% else %}
-            <li>
-                <a class='btn btn-default' href="/accounts/login">Login</a>
-            </li>
 
 
-            {% endif %}
-            {% if user.is_authenticated %}
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a class="navbar-brand" style="color: rgb(31, 30, 30);" class="navbar-brand" href="{% url 'image' %}"><i
+                        class="fa fa-instagram" aria-hidden="true" style="font-size:28px;"></i>
+                </a>
+                <a style="color: rgb(27, 27, 27);font-family: 'Leckerli One', cursive;font-size:38px;"
+                    class="navbar-brand" href="{% url 'image' %}">Instagram</a>
 
-            <a href="{%url 'new-image'%}">Add image</a>
+                <a href="{% url 'new-image' %}"><i class="fa fa-camera" aria-hidden="true"
+                        style="font-size:28px;color: rgb(31, 30, 30);;padding-right:40px"></i></a>
 
-            <li>
-                <a href="{% url 'profile'%}">Profile</a>
-            </li>
+                <a href="{% url 'profile' %}"><i class="fa fa-user-circle-o" aria-hidden="true"
+                        style="font-size:28px;color: rgb(31, 30, 30);padding-right:40px"></i></a>
 
-            <!-- Adding a search form  -->
-            <div class="col-sm-4 col-md-4 navbar-right">
+                <!-- Adding a search form  -->
+                <div class="col-sm-4 col-md-4 navbar-right">
 
-                <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+                    <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search User" name="User">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search User" name="User">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i
+                                        class="glyphicon glyphicon-search">Search</i></button>
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                </div>
+                <!-- search form end -->
+                {% endif %}
             </div>
-            <!-- search form end -->
-            {% endif %}
-        </div>
-
-
-
-
 
     </nav>
 </body>

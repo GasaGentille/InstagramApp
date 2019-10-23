@@ -29,16 +29,6 @@ class Profile(models.Model):
         self.user
     def delete_profile(self):
         self.delete()
-        
-    # def save_location(self):
-    #     self.save()
-
-    # def delete_location(self):
-    #     self.delete()
-
-    # def update_location(self):
-    #     location = Location.objects.filter_by(id = 2).update(location = 'kigali')
-
 
 class Image(models.Model):
     image = models.ImageField(upload_to = 'images/',null=True )
@@ -47,8 +37,6 @@ class Image(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
     likes = models.IntegerField(default=0)
     
-    # comments = models.CharField(max_length =30)
-    # profile_photo =  models.ForeignKey(Profile, null=True)
 
     def __str__(self):
         return self.image_name
@@ -74,4 +62,4 @@ class Comments(models.Model):
     
 
     def __str__(self):
-        return self.user
+        return self.comment
