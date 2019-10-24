@@ -27,13 +27,7 @@ class ImageTestClass(TestCase):
         self.assertFalse(len(images)==1)
 
     
-    # Testing Update Method
-    # def test_update_image(self):  
-    #     self.new_image.save_image()
-    #     image = Image.objects.filter(id = image.image_caption).update(image_caption = 'people').first()
-    #     update = Image.objects.filter(image_caption=image.image_caption).update(image_caption='wonderfu')
-    #     updated = Image.objects.filter(image_name='wonderful').first()
-    #     self.assertNotEqual(image.image_caption, updated.image_caption) 
+      self.assertNotEqual(image.image_caption, updated.image_caption) 
 
 class ProfileTestCase(TestCase):
     # Set up method
