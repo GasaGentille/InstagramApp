@@ -8,8 +8,9 @@
 
 
         <div class="col-md-4">
-                <h4 class="account-heading" style="margin-left:30px">{{user.username}}</h4>
-            <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive"style="border-radius: 50%; width: 50%">
+            <h4 class="account-heading" style="margin-left:30px">{{user.username}}</h4>
+            <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive"
+                style="border-radius: 50%; width: 50%">
 
             <a href="{%url 'add_profile' %} " style="color:white; background-color:blue; margin-top:30px;font-size: 40px; border-radius: 50%; width: 50px">&#43;</a>
             <p class="text-secondary ml-4">Bio:{{user.profile.bio}}</p>
@@ -22,27 +23,26 @@
                 <p><strong>{{images|length}} Posts</strong></p>
                 <p><strong>{{user|length}} Followers</strong></p>
                 <p><strong>{{user|length}} Following</strong></p>
-                <a href="{%url 'edit_profile' %}" >Edit
-                        Profile
+                <a href="{%url 'edit_profile' %}">Edit
+                    Profile
 
             </div>
 
         </div>
-        
+    </div><hr>
 
+    <div class="row">
+            {% for user in imgs %}
+            <div class="col-md-4" style="margin-right: 5%;">
+                <img src="{{user.image.url}}">
+            </div>
+            {% endfor %}
         
-    </div>
+        </div>
 
 </div>
-<hr>
-<div class="row">
-    {% for user in imgs %}
-    <div class="col-md-4" style="margin-right: 5%;">
-        <img src="{{user.image.url}}">
-    </div>
-    {% endfor %}
 
-</div>
+
 </div>
 </div>
 {% endblock %}
