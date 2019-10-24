@@ -37,6 +37,7 @@ class Image(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE ,null=True )
     likes = models.IntegerField(default=0)
     
+    
 
     def __str__(self):
         return self.image_name

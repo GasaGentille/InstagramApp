@@ -14,10 +14,12 @@
     {% for image in images %}
     <!--Display  images  -->
 
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-left:25%">
 
         <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive" style="border-radius: 50%; width: 10%">
-        <h4 class="account-heading" style="margin-left:30px">{{user.username}}</h4><br>
+        
+        <a href="{%url 'add_profile' %} " style="color:white; background-color:blue; margin-top:30px;font-size: 40px; border-radius: 50%; width: 50px">&#43;</a>
+        <div>
         <img src="{{image.image.url}}" class="img-responsive" alt="Image" data-toggle="modal" data-target="#{{image.id}}"
             style="height: 800px; width:600px">
         <h6><strong>Image-caption:</strong>{{ image.image_caption}} </h6>
@@ -31,7 +33,7 @@
             <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
         </a><span style="font-size:20px;">{{image.likes.count}}</span>
         <hr>
-
+    </div>
 
 
     </div>
@@ -50,7 +52,7 @@
                     <div class="modal-body">
                         <h2>Image Description</h2>
                         <hr>
-                        <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+                        <img src="{{image.image.url}}" class="img-responsive" alt="Image" style="height: 400px; width:400px">
                         <p><strong>Description</strong>: {{ image.image_caption}} </p>
                         <p><i class="fa fa-comment"></i></p>
                         <a href="{% url 'comment' image.id %}">comment</a>
