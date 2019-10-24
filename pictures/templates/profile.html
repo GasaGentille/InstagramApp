@@ -3,47 +3,46 @@
 {% load static %}
 {% block content %}
 <div class="container">
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="content-section">
-                    <div class="media">
-                        <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="media-body">
-                    <div class="hello">
-                        <h4 class="account-heading">{{user.username}}</h4>
-                        <button class="btn btn-outline-primary" style="margin-left:30px;"><a href="{%url 'add_profile' %}">Add
-                         Profile</a></button><i class="fa fa-sun-o" style="font-size: 28px;"></i>
-                         <button class="btn btn-outline-primary" style="margin-left:30px;"><a href="{%url 'edit_profile' %}">Edit
-                                Profile</a></button><i class="fa fa-sun-o" style="font-size: 28px;"></i>
-                    </div>
-                </div>
-            </div>
+
+    <div class="row">
 
 
-        <div class="yes" style="margin-left: 3px;justify-content: space-around;;">
-          <p><strong>{{images|length}} Posts</strong></p>
-          <p><strong>{{user|length}} Followers</strong></p>
-          <p><strong>{{user|length}} Following</strong></p>
+        <div class="col-md-4">
+                <h4 class="account-heading" style="margin-left:30px">{{user.username}}</h4>
+            <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive"style="border-radius: 50%; width: 50%">
+
+            <a href="{%url 'add_profile' %} " style="color:white; background-color:blue; margin-top:30px;font-size: 40px; border-radius: 50%; width: 50px">&#43;</a>
+            <p class="text-secondary ml-4">Bio:{{user.profile.bio}}</p>
         </div>
-         <p class="text-secondary ml-4">Email:{{user.email}}</p>
-         <p class="text-secondary ml-4">Bio:{{user.profile.bio}}</p>
-       </div>
-     </div>
+
+
+        <div class="col-md-8">
+
+            <div>
+                <p><strong>{{images|length}} Posts</strong></p>
+                <p><strong>{{user|length}} Followers</strong></p>
+                <p><strong>{{user|length}} Following</strong></p>
+                <a href="{%url 'edit_profile' %}" >Edit
+                        Profile
+
+            </div>
+
+        </div>
+        
+
+        
+    </div>
+
 </div>
 <hr>
 <div class="row">
-{% for user in imgs %}
-<div class="col-md-4" style="margin-right: 5%;">
-  <img src="{{user.image.url}}" class="img-responsive">
-</div>
-{% endfor %}
-
-        </div>
+    {% for user in imgs %}
+    <div class="col-md-4" style="margin-right: 5%;">
+        <img src="{{user.image.url}}">
     </div>
+    {% endfor %}
+
+</div>
+</div>
 </div>
 {% endblock %}
