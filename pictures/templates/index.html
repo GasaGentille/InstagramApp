@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
-
+{% load bootstrap4 %}
+{% load static %}
 {% block content %}
 {{block.super}}
 <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
@@ -8,62 +9,66 @@
     instagram</h1>
 <div class="container">
 
-    <div class="row">
 
-        {% for image in images %}
-        <!--Display  images  -->
 
-        <div class="col-md-12">
+    {% for image in images %}
+    <!--Display  images  -->
 
-            <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive"
-                style="border-radius: 50%; width: 10%">
-            <img src="{{image.image.url}}" class="img-responsive" alt="Image" data-toggle="modal" data-target="#{{image.id}}"style="font-size:300px;">
+    <div class="col-md-12">
 
-            <p><i class="fa fa-comment"></i></p>
-                            <a href="{% url 'comment' image.id %}">comment</a>
-                            {% for coment in image.comments_set.all %}
-                            <p>{{coment.comment}}</p>
-                            {% endfor %}
-                            <a class='info' href="{% url 'likes' image.id%}">
-                                <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
-                            </a><span style="font-size:20px;">{{image.likes.count}}</span>
+        <img src="{{user.profile.profile_photo.url}}" alt="Profile" class="img_profile" class="img-responsive" style="border-radius: 50%; width: 10%">
+        <h4 class="account-heading" style="margin-left:30px">{{user.username}}</h4><br>
+        <img src="{{image.image.url}}" class="img-responsive" alt="Image" data-toggle="modal" data-target="#{{image.id}}"
+            style="height: 800px; width:600px">
+        <h6><strong>Image-caption:</strong>{{ image.image_caption}} </h6>
 
-                
-            <h3><strong>Image-caption:</strong>{{ image.image_caption}} </h3>
-        </div>
-        <!-- Modal -->
-        <div class="col-md-4">
-            <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">{{image.image_name}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h2>Image Description</h2><hr>
-                            <img src="{{image.image.url}}" class="img-responsive" alt="Image">
-                            <p><strong>Description</strong>: {{ image.image_caption}} </p>
-                            <p><i class="fa fa-comment"></i></p>
-                            <a href="{% url 'comment' image.id %}">comment</a>
-                            {% for coment in image.comments_set.all %}
-                            <p>{{coment.comment}}</p>
-                            {% endfor %}
-                            <a class='info' href="{% url 'likes' image.id%}">
-                                <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
-                            </a><span style="font-size:20px;">{{image.likes.count}}</span>
 
-                        </div>
+        <a href="{% url 'comment' image.id %}"><i class="fa fa-comment"></i>comment</a>
+        {% for coment in image.comments_set.all %}
+        <p>{{coment.comment}}</p>
+        {% endfor %}
+        <a class='info' href="{% url 'likes' image.id%}">
+            <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
+        </a><span style="font-size:20px;">{{image.likes.count}}</span>
+        <hr>
+
+
+
+    </div>
+    <!-- Modal -->
+    <div class="col-md-4">
+        <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">{{image.image_name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Image Description</h2>
+                        <hr>
+                        <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+                        <p><strong>Description</strong>: {{ image.image_caption}} </p>
+                        <p><i class="fa fa-comment"></i></p>
+                        <a href="{% url 'comment' image.id %}">comment</a>
+                        {% for coment in image.comments_set.all %}
+                        <p>{{coment.comment}}</p>
+                        {% endfor %}
+                        <a class='info' href="{% url 'likes' image.id%}">
+                            <p>{{image.likes}} likes<i class="fa fa-heart-o"></i></p>
+                        </a><span style="font-size:20px;">{{image.likes.count}}</span>
+
                     </div>
                 </div>
             </div>
         </div>
-
-        {% endfor %}
     </div>
+
+    {% endfor %}
+
 
 
 </div>
