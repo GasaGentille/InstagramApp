@@ -24,7 +24,7 @@ Admin ability to the pplication:
 - update images deetails 
 
 
-You can visit the application using: https://phootoss.herokuapp.com/
+You can visit the application using: https://instagrammappp.herokuapp.com/
 
 ## SetUp/Installation instructions
 
